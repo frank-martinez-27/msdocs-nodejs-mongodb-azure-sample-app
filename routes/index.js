@@ -19,6 +19,16 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/tasks', function(req, res, next) {
+  Task.find()
+    .then((tasks) => {
+      res.json(tasks);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send('Sorry! Something went wrong.');
+    });
+});
 
 router.post('/addTask', function(req, res, next) {
   const taskName = req.body.taskName;
